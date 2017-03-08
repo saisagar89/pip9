@@ -1,0 +1,66 @@
+<hr class="cstm-hr">
+<div class="container cont-bg ml_nav" id="main_story">
+  <div class="row">
+    <div class="col-lg-12 col-xs-12 pd-0"> 
+      <!-- FIRST STORY -->
+      <%unless @stories['stories'].blank?%>
+        <div class="col-lg-6 col-sm-6 pd-0 first_story">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <img class="img-responsive" src="<%= "http://quintype-01.imgix.net/#{@stories['stories'].first['hero-image-s3-key'] rescue ''}"%>" />
+          </div>
+          <div class="custom-title col-lg-4 col-sm-12 ">
+            <label><a href="#" title="<%= @stories['stories'].first['headline']%>"> <%=truncate(@stories['stories'].first['headline'], length: 35)%> </a></label>
+            <br />
+            <label class="text-set pt-10"> <a href="#"><%= @stories['stories'].first['slug'].split('/').first.upcase %> </a></label>
+            <br>
+            <label class="text-set"> <%= Time.at(@stories['stories'].first['last-published-at']/1000.0).strftime("%b %d, %Y, %I:%M%p")%> </label>
+            <label class="text-set"></label>
+            <label class="text-set pt-10"> By <%= @stories['stories'].first['author-name'] %></label>
+          </div>
+        </div>
+      <%end%>
+      <%if @stories['stories'].count > 3%>
+        <div class="col-lg-6 col-sm-6 pd-0 side-list-grid">
+          <% @stories['stories'].last(3).each do |s|%>
+            <div class="vid-list col-lg-12 mb-10">
+              <div class="col-lg-4 col-sm-6 small-video "> <img class="img-responsive" src="<%= "http://quintype-01.imgix.net/#{s['hero-image-s3-key']}"%>" /> </div>
+              <div class="col-lg-8 col-sm-6 pd-0">
+                <label><a href="#" title="<%= s['headline']%>"> <%=truncate(s['headline'], length: 35)%> </a></label>
+                <br>
+                <label class="text-set pt-10"> <a href="#"><%= s['slug'].split('/').first.upcase %></a></label>
+                <br>
+                <label class="text-set"> <%= Time.at(s['last-published-at']/1000.0).strftime("%b %d, %Y, %I:%M%p")%> </label>
+                <label class="text-set"></label>
+                <label class="text-set pt-10"> By <%= s['author-name'] %></label>
+              </div>
+            </div>
+          <%end%>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</div>
+
+<hr class="cstm-hr">
+<div class="container_fluid cont-bg sm_stories_container" id="sm_stories">
+  <div class="row">
+    <div class="col-lg-12 pd-0">
+      <% total_stories = @stories['stories'].count%>
+      <%if total_stories > 4%>
+        <% @stories['stories'].each_with_index.each do |s, count|%>
+          <%if (count != 0 && (count != (total_stories -1)) && (count != (total_stories -2)) && (count != (total_stories -3)))%>
+            <div class="col-lg-3 col-sm-3 col-xs-6 mb-20 bottom_list"> <img class="img-responsive" src="<%= "http://quintype-01.imgix.net/#{s['hero-image-s3-key']}"%>" />
+              <label><a href="#" title="<%=s['headline']%>"> <%=truncate(s['headline'], length: 20)%> </a></label>
+              <br>
+              <label class="text-set pt-10"> <a href="#"><%= s['slug'].split('/').first.upcase %> </a></label>
+              <br>
+              <label class="text-set"> <%= Time.at(s['last-published-at']/1000.0).strftime("%b %d, %Y, %I:%M%p")%> </label>
+              <label class="text-set"></label>
+              <div class="text-set pt-10">By <%= s['author-name'] %></div>
+            </div>
+          <%end%>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+</div>
