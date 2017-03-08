@@ -23,6 +23,78 @@ Things you may want to cover:
 
 * ...
 
+RR Project Setup Docmentation
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Python instalation and packeges
+pip Install version 9.0.1:
+sudo apt-get install python-pip python-dev build-essential
+sudo pip install --upgrade pip 
+Go to this website https://pypi.python.org/pypi/pip
+wget //link goes here
+tar -xzvf pip-9.0.1.tar.gz
+cd pip-9.0.1
+sudo python3 setup.py install
+sudo -H pip2 install --upgrade pip
+pip -V
+pip 9.0.1 from /usr/local/lib/python2.7/dist-packages/pip-9.0.1-py2.7
+pip all packages install:
+sudo pip install Flask
+sudo pip install flask_cors
+sudo pip install scipy
+sudo pip install pandas
+sudo pip install gensim==0.13.3
+sudo pip install requests_toolbelt
+sudo pip install nltk
+sudo pip install sklearn
+sudo pip install s3io
+sudo pip install bs4
+sudo pip install gunicorn
+sudo pip install futures
+sudo pip install -U numpy pandas protobuf==3.0.0 tqdm
+sudo python -m nltk.downloader -d /usr/local/share/nltk_data wordnet
+sudo python -m nltk.downloader -d /usr/local/share/nltk_data stopwords
+sudo python -m nltk.downloader -d /usr/local/share/nltk_data punkt
+
+
+
+BigArtm Installation for linux: 
+
+https://github.com/bigartm/bigartm/releases
+Beta release v0.8.1
+Download the v0.8.1 
+
+http://bigartm.readthedocs.io/en/v0.8.1/tutorials/linux_basic.html
+http://bigartm-test.readthedocs.io/en/latest/tutorials/linux_basic.html
+http://bigartm-test.readthedocs.io/en/latest/tutorials/linux_basic.html 
+
+
+sudo apt-get --yes install cmake
+
+sudo pip2 install -U numpy pandas protobuf==3.0.0 tqdm
+sudo apt-get install git make cmake build-essential libboost-all-dev
+
+cd ~
+git clone --branch=stable https://github.com/bigartm/bigartm.git
+cd bigartm
+mkdir build && cd build
+cmake ..
+sudo make
+ sudo make install
+# Step 1 - add BigARTM python bindings to PYTHONPATH
+export PYTHONPATH=~/bigartm/python:$PYTHONPATH
+
+# Step 2 - install google protobuf
+cd ~/bigartm
+cp build/3rdparty/protobuf-cmake/protoc/protoc 3rdparty/protobuf/src/
+cd 3rdparty/protobuf/python
+python setup.py build
+sudo python setup.py install
+
+# Step 3 - point ARTM_SHARED_LIBRARY variable to libartm.so (libartm.dylib) location
+export ARTM_SHARED_LIBRARY=~/bigartm/build/src/artm/libartm.so        # for linux
+export ARTM_SHARED_LIBRARY=~/bigartm/build/src/artm/libartm.dylib     # for Mac OS X
+#Step 4. Register libartm.so / libartm.dylib
+echo /usr/local/lib | sudo tee /etc/ld.so.conf.d/artm.conf
+sudo ldconfig
+export ARTM_SHARED_LIBRARY=/usr/local/lib/libartm.so     # Linux / Unix
+
