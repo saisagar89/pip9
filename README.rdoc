@@ -3,9 +3,9 @@
 RR Project Setup Docmentation
 
 Python instalation and packeges
-`pip Install version 9.0.1:  `
-`sudo apt-get install python-pip python-dev build-essential  `
-`sudo pip install --upgrade pip  `
+```pip Install version 9.0.1: ```
+``` sudo apt-get install python-pip python-dev build-essential 
+sudo pip install --upgrade pip  ```
 Go to this website https://pypi.python.org/pypi/pip
 wget //link goes here
 tar -xzvf pip-9.0.1.tar.gz
